@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/yygh_parent/common/common.iml" filepath="$PROJECT_DIR$/yygh_parent/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yygh_parent/common/common_util/common_util.iml" filepath="$PROJECT_DIR$/yygh_parent/common/common_util/common_util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yygh_parent/model/model.iml" filepath="$PROJECT_DIR$/yygh_parent/model/model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yygh_parent/service/service.iml" filepath="$PROJECT_DIR$/yygh_parent/service/service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yygh_parent/service/service_user/service_user.iml" filepath="$PROJECT_DIR$/yygh_parent/service/service_user/service_user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yygh_parent/common/service_util/service_util.iml" filepath="$PROJECT_DIR$/yygh_parent/common/service_util/service_util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yygh_parent/yygh_parent.iml" filepath="$PROJECT_DIR$/yygh_parent/yygh_parent.iml" />
+    </modules>
+  </component>
+</project>
