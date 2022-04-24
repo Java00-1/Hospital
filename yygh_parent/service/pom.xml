@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>service_user</module>
+        <module>service_hosp</module>
     </modules>
     <artifactId>service</artifactId>
     <dependencies>
