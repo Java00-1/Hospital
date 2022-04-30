@@ -13,6 +13,7 @@
     <modules>
         <module>service_user</module>
         <module>service_hosp</module>
+        <module>service_cmn</module>
     </modules>
     <artifactId>service</artifactId>
     <dependencies>
@@ -64,12 +65,12 @@
         </dependency>-->
     </dependencies>
     <build>
-        <plugins>
+       <!-- <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-        </plugins>
+        </plugins>-->
         <resources>
             <resource>
                 <directory>src/main/java</directory>
