@@ -7,13 +7,17 @@ import com.atguigu.yygh.repository.DepartmentRepository;
 import com.atguigu.yygh.service.DepartmentService;
 import com.atguigu.yygh.vo.hosp.DepartmentQueryVo;
 
+import com.atguigu.yygh.vo.hosp.DepartmentVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -73,5 +77,55 @@ public class DepartmentServiceImpl implements DepartmentService {
             //mongodb operation
             departmentRepository.deleteById(department.getId());
         }
+    }
+
+    @Override
+    public List<DepartmentVo> findDeptTree(String hoscode) {
+        //create list to encapsulate data
+        List<DepartmentVo> list = new ArrayList<>();
+
+        //get all department data by hoscode
+        Department departmentQuery = new Department();
+        departmentQuery.setHoscode(hoscode);
+        Example example = Example.of(departmentQuery);
+        List<Department> departmentList = departmentRepository.findAll(example);
+
+        //根据大科室进行分组 获取每个大科室下的子科室
+        Map<String, List<Department>> departmentMap = departmentList.stream()
+                .collect(Collectors.groupingBy(Department::getBigcode));
+
+        //display map
+        for(Map.Entry<String,List<Department>> entry : departmentMap.entrySet()){
+            String bigCode = entry.getKey();
+            List<Department> departmentListValue = entry.getValue();
+
+            //encapsulate big department
+            DepartmentVo departmentVo = new DepartmentVo();
+            departmentVo.setDepcode(bigCode);
+            departmentVo.setDepname(departmentListValue.get(0).getBigname());
+
+            //encapsulate small dept
+            List<DepartmentVo> childrenList = new ArrayList<>();
+            for (Department department : departmentListValue){
+                DepartmentVo vo = new DepartmentVo();
+                vo.setDepcode(department.getDepcode());
+                vo.setDepname(department.getDepname());
+                childrenList.add(vo);
+            }
+
+            departmentVo.setChildren(childrenList);
+            list.add(departmentVo);
+        }
+
+        return list;
+    }
+
+    @Override
+    public String getDeptName(String hoscode, String depcode) {
+        Department department = departmentRepository.getDepartmentByHoscodeAndDepcode(hoscode, depcode);
+        if (department != null){
+            return department.getDepname();
+        }
+        return null;
     }
 }
