@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/cmn/dict")
-@CrossOrigin //implement cross origin
+//@CrossOrigin //implement cross origin
 public class CmnController {
 
     @Autowired

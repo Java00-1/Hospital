@@ -12,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/*http://localhost/admin/hosp/hospitalSet/findPageHospSet/1/3
+                /admin/hosp/hospitalSet/findPageHospSet/{current}/{limit}/*/
 @RestController
 @RequestMapping("/admin/hosp/hospitalSet")
+//@CrossOrigin(allowCredentials = "true")
 public class HospitalSetController {
 
     @Autowired //set value by type
@@ -53,7 +55,7 @@ public class HospitalSetController {
 
     /*分页条件查询*/
 
-    @PostMapping("findPageHospSet/{current}/{limit}/")
+    @PostMapping("findPageHospSet/{current}/{limit}")
     /**
      * current:当前页数
      * limit:显示页数

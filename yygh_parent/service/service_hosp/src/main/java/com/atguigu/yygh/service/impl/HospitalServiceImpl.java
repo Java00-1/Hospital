@@ -116,6 +116,26 @@ public class HospitalServiceImpl implements HospitalService {
         return null;
     }
 
+    @Override
+    public List<Hospital> findHospByHosname(String hosname) {
+        List<Hospital> hospitalList = hospitalRepository.findHospitalByHosnameLike(hosname);
+        return hospitalList;
+    }
+
+    @Override
+    public Map<String, Object> deptDetail(String hoscode) {
+        HashMap<String, Object> result = new HashMap<>();
+        //医院详情
+        Hospital hospital = this.setHospitalHosType(this.getByHoscode(hoscode));
+        result.put("hospital",hospital);
+
+        //预约规则
+        result.put("bookingRule",hospital.getBookingRule());
+        //不就行重新返回
+        hospital.setBookingRule(null);
+        return result;
+    }
+
     private Hospital setHospitalHosType(Hospital hospital) {
         String hostypeString = dictFeignClient.getName("Hostype", hospital.getHostype());
         String province = dictFeignClient.getName(hospital.getProvinceCode());
